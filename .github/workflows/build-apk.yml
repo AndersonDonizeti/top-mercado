@@ -1,0 +1,37 @@
+name: Gerar APK PWA
+
+on:
+  push:
+    branches: [ main ]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Copiar código do repositório
+        uses: actions/checkout@v3
+
+      - name: Configurar Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: 18
+
+      - name: Instalar Bubblewrap CLI
+        run: npm install -g @bubblewrap/cli
+
+      - name: Configurar ambiente Android e JDK de forma automática
+        run: |
+          bubblewrap init --manifest=https://AndersonDonizeti.github.io/top-mercado/manifest.json --directory=android-app
+          cd android-app
+          npx @bubblewrap/cli update
+
+      - name: Compilar o APK
+        run: |
+          cd android-app
+          npx @bubblewrap/cli build
+
+      - name: Salvar o APK gerado
+        uses: actions/upload-artifact@v3
+        with:
+          name: app-top-mercado-apk
+          path: android-app/app-release-signed.apk
