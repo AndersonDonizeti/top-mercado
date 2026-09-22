@@ -1,0 +1,30 @@
+<!-- CABEÇALHO DE BUSCA E FILTROS -->
+<div class="products-header">
+    <div class="search-group">
+        <label for="productSearch"><i class="fas fa-search"></i> Buscar no Histórico</label>
+        <input type="text" id="productSearch" placeholder="Ex: Arroz, Leite..." autocomplete="off" />
+    </div>
+    
+    <div class="sort-group">
+        <label for="productSort"><i class="fas fa-sort-amount-down"></i> Ordenar por</label>
+        <select id="productSort">
+            <option value="frequency">Mais Comprados</option>
+            <option value="totalSpent">Maior Gasto Total</option>
+            <option value="az">Ordem Alfabética (A-Z)</option>
+        </select>
+    </div>
+</div>
+
+<!-- CONTAINER DE PRODUTOS -->
+<div class="products-container">
+    <div class="products-stats-summary">
+        <span id="uniqueProductsCount">0 produtos catalogados</span>
+    </div>
+    
+    <div id="productsList">
+        <div class="empty-state">
+            <i class="fas fa-spinner fa-spin"></i>
+            <p>Analisando histórico de produtos...</p>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,17 @@
+{
+    "name": "Top Mercado",
+    "short_name": "TopMercado",
+    "start_url": "./index.html",
+    "display": "standalone",
+    "background_color": "#f4f7fc",
+    "theme_color": "#1a4b8c",
+    "orientation": "portrait",
+    "icons": [
+        {
+            "src": "https://cdn-icons-png.flaticon.com/512/3081/3081840.png",
+            "sizes": "512x512",
+            "type": "image/png",
+            "purpose": "any maskable"
+        }
+    ]
+}

@@ -1,0 +1,34 @@
+<!-- CABEÇALHO DO MÊS -->
+<div class="month-header">
+    <div class="month-selector-group">
+        <label for="monthSelect"><i class="far fa-calendar-alt"></i> Selecione o Mês</label>
+        <input type="month" id="monthSelect" />
+    </div>
+</div>
+
+<!-- CARTÕES DE RESUMO (DASHBOARD) -->
+<div class="dashboard-grid">
+    <div class="dash-card primary">
+        <span class="dash-title">Total Gasto</span>
+        <span class="dash-value" id="monthTotalGasto">R$ 0,00</span>
+    </div>
+    <div class="dash-card">
+        <span class="dash-title">Média Diária</span>
+        <span class="dash-value" id="monthMediaDiaria">R$ 0,00</span>
+    </div>
+    <div class="dash-card">
+        <span class="dash-title">Total de Itens</span>
+        <span class="dash-value" id="monthTotalItens">0</span>
+    </div>
+</div>
+
+<!-- LISTA DE GASTOS POR DIA -->
+<div class="daily-breakdown">
+    <h3><i class="fas fa-calendar-day"></i> Resumo por Dia</h3>
+    <div id="daysListContainer">
+        <div class="empty-state">
+            <i class="fas fa-spinner fa-spin"></i>
+            <p>Calculando fechamento do mês...</p>
+        </div>
+    </div>
+</div>

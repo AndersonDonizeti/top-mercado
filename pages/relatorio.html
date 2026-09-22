@@ -1,0 +1,53 @@
+<!-- CABEÇALHO DO RELATÓRIO -->
+<div class="report-header">
+    <div class="form-group">
+        <label for="yearSelect"><i class="far fa-calendar-check"></i> Ano de Referência</label>
+        <input type="number" id="yearSelect" min="2020" max="2100" step="1" />
+    </div>
+</div>
+
+<!-- CARTÕES DE RESUMO ANUAL -->
+<div class="dashboard-grid">
+    <div class="dash-card primary">
+        <span class="dash-title">Gasto Total no Ano</span>
+        <span class="dash-value" id="yearTotal">R$ 0,00</span>
+    </div>
+    <div class="dash-card">
+        <span class="dash-title">Média Mensal</span>
+        <span class="dash-value" id="yearMedia">R$ 0,00</span>
+    </div>
+    <div class="dash-card">
+        <span class="dash-title">Mês mais Caro</span>
+        <span class="dash-value" id="highestMonth">-</span>
+    </div>
+</div>
+
+<!-- GRÁFICO DE BARRAS (CSS) -->
+<div class="chart-section">
+    <h3><i class="fas fa-chart-column"></i> Evolução Mensal</h3>
+    <div class="bar-chart" id="annualChart">
+        <div class="empty-state">
+            <i class="fas fa-spinner fa-spin"></i>
+            <p>Calculando histórico anual...</p>
+        </div>
+    </div>
+</div>
+
+<!-- SISTEMA DE BACKUP -->
+<div class="chart-section" style="margin-top: 20px;">
+    <h3><i class="fas fa-shield-alt"></i> Backup & Restauração</h3>
+    <p style="font-size: 12px; color: var(--text-muted); margin-bottom: 16px;">
+        Salve seus dados de forma segura ou restaure um arquivo anterior.
+    </p>
+    
+    <div class="form-actions" style="grid-column: 1 / -1;">
+        <button class="btn btn-primary" id="btnExportar">
+            <i class="fas fa-download"></i> Exportar
+        </button>
+        <!-- O input file fica escondido dentro do label para manter o design do botão -->
+        <label class="btn btn-outline" style="margin: 0; cursor: pointer; flex: 1; display: flex; align-items: center; justify-content: center; gap: 6px;">
+            <i class="fas fa-upload"></i> Importar
+            <input type="file" id="btnImportar" accept=".json" style="display: none;" />
+        </label>
+    </div>
+</div>
