@@ -1,8 +1,12 @@
+cat << 'EOF' > .github/workflows/build-apk.yml
 name: Gerar APK PWA
 
 on:
   push:
     branches: [ main ]
+
+permissions:
+  contents: write
 
 jobs:
   build:
@@ -35,3 +39,4 @@ jobs:
         with:
           name: app-top-mercado-apk
           path: android-app/app-release-signed.apk
+EOF
