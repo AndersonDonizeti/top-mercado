@@ -1,4 +1,4 @@
-name: Build Android APK (TWA)
+name: Build Android APK (Direto via Gradle)
 
 on:
   push:
@@ -9,29 +9,24 @@ permissions:
 
 jobs:
   build:
-    name: Build APK Bubblewrap
+    name: Compilar APK
     runs-on: ubuntu-latest
 
     steps:
     - name: Checkout do código
       uses: actions/checkout@v4
 
-    - name: Setup Node.js
-      uses: actions/setup-node@v4
+    - name: Setup Java (JDK 17)
+      uses: actions/setup-java@v5
       with:
-        node-version: '18'
-
-    - name: Instalar Bubblewrap CLI
-      run: npm install -g @bubblewrap/cli
-
-    - name: Gerar projeto Android (Completamente Automatico)
-      run: |
-        # Responde "y" para o JDK interno, "y" para o Android SDK interno, e Enter para o resto
-        printf "y\ny\n\n\n\n\n\n\n\n\n" | bubblewrap init --manifest=https://AndersonDonizeti.github.io/top-mercado/manifest.json --directory=android --skipPwaValidation
+        distribution: 'temurin'
+        java-version: '17'
 
     - name: Build via Gradle
       run: |
-        cd android && ./gradlew assembleRelease
+        cd android
+        chmod +x gradlew
+        ./gradlew assembleRelease
 
     - name: Salvar o APK (Upload)
       uses: actions/upload-artifact@v4
