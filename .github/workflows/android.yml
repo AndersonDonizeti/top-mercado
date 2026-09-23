@@ -22,8 +22,8 @@ jobs:
         distribution: 'temurin'
         java-version: '17'
 
-    - name: Aceitar licenças do Android SDK
-      run: yes | sdkmanager --licenses || true
+    - name: Setup Android SDK
+      uses: android-actions/setup-android@v3
 
     - name: Setup Node.js
       uses: actions/setup-node@v4
@@ -33,20 +33,12 @@ jobs:
     - name: Instalar Bubblewrap CLI
       run: npm install -g @bubblewrap/cli
 
-    - name: Configurar bubblewrap com JDK/SDK existentes (sem prompt)
+    - name: Gerar projeto Android
       run: |
-        bubblewrap updateConfig --jdkPath="$JAVA_HOME" --androidSdkPath="$ANDROID_HOME"
-
-    - name: Gerar/atualizar projeto Android
-      run: bubblewrap update --skipPwaValidation
-
-    - name: Criar key.properties com senha do keystore
-      working-directory: android
-      run: |
-        printf 'storePassword=%s\nkeyPassword=%s\nkeyAlias=android\nstoreFile=%s/android.keystore\n' \
-          "${{ secrets.KEYSTORE_STORE_PASSWORD }}" \
-          "${{ secrets.KEYSTORE_KEY_PASSWORD }}" \
-          "$(pwd)" > key.properties
+        yes | bubblewrap init --manifest=https://AndersonDonizeti.github.io/top-mercado/manifest.json --directory=android --skipPwaValidation || bubblewrap update --skipPwaValidation
+      env:
+        ANDROID_HOME: ${{ env.ANDROID_HOME }}
+        JAVA_HOME: ${{ env.JAVA_HOME }}
 
     - name: Build via Gradle (sem prompt)
       working-directory: android
