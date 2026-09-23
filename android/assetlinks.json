@@ -1,0 +1,8 @@
+[{
+      "relation": ["delegate_permission/common.handle_all_urls"],
+      "target": {
+        "namespace": "android_app",
+        "package_name": "io.github.andersondonizeti.twa",
+        "sha256_cert_fingerprints": ["D3:6C:15:C1:13:CD:A7:CC:33:5C:2F:41:B1:86:DF:8E:AE:B7:83:AF:F1:CE:08:F5:6A:10:86:AB:02:6D:46:18"]
+      }
+    }]
