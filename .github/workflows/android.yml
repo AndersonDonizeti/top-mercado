@@ -50,10 +50,16 @@ jobs:
     - name: Instalar Bubblewrap CLI
       run: npm install -g @bubblewrap/cli
 
-    - name: Gerar projeto Android
+    - name: Gerar projeto Android e Validar
       run: |
         export ANDROID_HOME=$HOME/android-sdk
-        bubblewrap init --manifest=https://AndersonDonizeti.github.io/top-mercado/manifest.json --directory=android --skipPwaValidation || true
+        echo "A executar bubblewrap init..."
+        bubblewrap init --manifest=https://AndersonDonizeti.github.io/top-mercado/manifest.json --directory=android --skipPwaValidation
+        
+        if [ ! -d "android" ]; then
+          echo "Erro: A pasta android nao foi criada!"
+          exit 1
+        fi
 
     - name: Build via Gradle
       run: |
