@@ -50,12 +50,13 @@ jobs:
     - name: Instalar Bubblewrap CLI
       run: npm install -g @bubblewrap/cli
 
-    - name: Gerar projeto Android (Usando manifesto local)
+    - name: Gerar projeto Android
       run: |
         export ANDROID_HOME=$HOME/android-sdk
-        yes | bubblewrap init --manifest=./manifest.json --directory=android --skipPwaValidation || bubblewrap update --skipPwaValidation
+        bubblewrap init --manifest=https://AndersonDonizeti.github.io/top-mercado/manifest.json --directory=android --skipPwaValidation || true
+        bubblewrap update --skipPwaValidation || true
 
-    - name: Build via Gradle (sem prompt)
+    - name: Build via Gradle
       working-directory: android
       run: ./gradlew assembleRelease
 
