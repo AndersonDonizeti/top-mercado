@@ -21,44 +21,16 @@ jobs:
       with:
         node-version: '18'
 
-    - name: Setup Java (JDK 17)
-      uses: actions/setup-java@v5
-      with:
-        distribution: 'temurin'
-        java-version: '17'
-
-    - name: Instalar Android SDK Manualmente
-      run: |
-        echo "A descarregar Android Commandline Tools..."
-        mkdir -p $HOME/android-sdk/cmdline-tools
-        wget -q https://dl.google.com/android/repository/commandlinetools-linux-11076708_latest.zip -O cmdline-tools.zip
-        unzip -q cmdline-tools.zip -d $HOME/android-sdk/cmdline-tools
-        mv $HOME/android-sdk/cmdline-tools/cmdline-tools $HOME/android-sdk/cmdline-tools/latest
-        
-        echo "A configurar variáveis de ambiente..."
-        echo "ANDROID_HOME=$HOME/android-sdk" >> $GITHUB_ENV
-        echo "$HOME/android-sdk/cmdline-tools/latest/bin" >> $GITHUB_PATH
-        echo "$HOME/android-sdk/platform-tools" >> $GITHUB_PATH
-
-    - name: Aceitar Licenças e Instalar Ferramentas Android
-      run: |
-        export ANDROID_HOME=$HOME/android-sdk
-        export PATH=$PATH:$ANDROID_HOME/cmdline-tools/latest/bin:$ANDROID_HOME/platform-tools
-        yes | sdkmanager --licenses || true
-        sdkmanager "platform-tools" "platforms;android-34" "build-tools;34.0.0"
-
     - name: Instalar Bubblewrap CLI
       run: npm install -g @bubblewrap/cli
 
-    - name: Gerar projeto Android
+    - name: Gerar projeto Android (Completamente Automatico)
       run: |
-        export ANDROID_HOME=$HOME/android-sdk
-        # Responde "y" para o Bubblewrap instalar o seu JDK e passa o Android SDK automaticamente
-        printf "y\n%s\n\n\n\n\n\n" "$ANDROID_HOME" | bubblewrap init --manifest=https://AndersonDonizeti.github.io/top-mercado/manifest.json --directory=android --skipPwaValidation
+        # Responde "y" para o JDK interno, "y" para o Android SDK interno, e Enter para o resto
+        printf "y\ny\n\n\n\n\n\n\n\n\n" | bubblewrap init --manifest=https://AndersonDonizeti.github.io/top-mercado/manifest.json --directory=android --skipPwaValidation
 
     - name: Build via Gradle
       run: |
-        export ANDROID_HOME=$HOME/android-sdk
         cd android && ./gradlew assembleRelease
 
     - name: Salvar o APK (Upload)
