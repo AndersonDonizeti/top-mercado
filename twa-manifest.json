@@ -1,0 +1,27 @@
+{
+  "path": "https://AndersonDonizeti.github.io/top-mercado/",
+  "name": "Top Mercado",
+  "shortName": "TopMercado",
+  "startUrl": "/top-mercado/",
+  "display": "standalone",
+  "themeColor": "#1a4b8c",
+  "backgroundColor": "#f4f7fc",
+  "navigationColor": "#1a4b8c",
+  "navigationColorDark": "#1a4b8c",
+  "navigationDividerColor": "#1a4b8c",
+  "navigationDividerColorDark": "#1a4b8c",
+  "iconUrl": "https://AndersonDonizeti.github.io/top-mercado/icone.png",
+  "splashScreenImageUrl": "https://AndersonDonizeti.github.io/top-mercado/icone.png",
+  "maskableIconUrl": "https://AndersonDonizeti.github.io/top-mercado/icone.png",
+  "monochromeIconUrl": "https://AndersonDonizeti.github.io/top-mercado/icone.png",
+  "appId": "com.github.andersondonizeti.topmercado",
+  "appName": "Top Mercado",
+  "generatorApp": "bubblewrap-cli",
+  "signingKey": {
+    "path": "android.keystore",
+    "alias": "android"
+  },
+  "appVersionName": "1.0.0",
+  "appVersionCode": 1,
+  "appSource": "bubblewrap"
+}

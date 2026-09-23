@@ -30,18 +30,11 @@ jobs:
     - name: Instalar Bubblewrap CLI
       run: npm install -g @bubblewrap/cli
 
-    - name: 1. Inicializar Projeto Bubblewrap
-      run: |
-        yes | bubblewrap init --manifest=https://AndersonDonizeti.github.io/top-mercado/manifest.json --directory=android-app
-
-    - name: 2. Construir o APK
-      run: |
-        cd android-app
-        npx @bubblewrap/cli update || true
-        bubblewrap build
+    - name: Construir o APK
+      run: bubblewrap build
 
     - name: Salvar o APK (Upload)
       uses: actions/upload-artifact@v4
       with:
         name: TopMercado-APK
-        path: android-app/app-release-signed.apk
+        path: app-release-signed.apk
