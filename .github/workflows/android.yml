@@ -22,7 +22,7 @@ jobs:
         node-version: '18'
 
     - name: Setup Java (JDK 17)
-      uses: actions/setup-java@v4
+      uses: actions/setup-java@v5
       with:
         distribution: 'zulu'
         java-version: '17'
@@ -30,17 +30,14 @@ jobs:
     - name: Instalar Bubblewrap CLI
       run: npm install -g @bubblewrap/cli
 
-    - name: Inicializar e Construir o APK
+    - name: 1. Inicializar Projeto Bubblewrap
       run: |
-        # Executa a inicialização respondendo automaticamente com os dados do manifesto
         yes | bubblewrap init --manifest=https://AndersonDonizeti.github.io/top-mercado/manifest.json --directory=android-app
-        
+
+    - name: 2. Construir o APK
+      run: |
         cd android-app
-        
-        # Atualiza dependências do SDK se necessário
         npx @bubblewrap/cli update || true
-        
-        # Constrói o APK assinado
         bubblewrap build
 
     - name: Salvar o APK (Upload)
