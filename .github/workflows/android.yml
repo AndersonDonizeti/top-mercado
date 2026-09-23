@@ -33,6 +33,10 @@ jobs:
     - name: Instalar Bubblewrap CLI
       run: npm install -g @bubblewrap/cli
 
+    - name: Configurar bubblewrap com JDK/SDK existentes (sem prompt)
+      run: |
+        bubblewrap updateConfig --jdkPath="$JAVA_HOME" --androidSdkPath="$ANDROID_HOME"
+
     - name: Gerar/atualizar projeto Android
       run: bubblewrap update --skipPwaValidation
 
