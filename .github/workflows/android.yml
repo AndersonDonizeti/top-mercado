@@ -21,11 +21,11 @@ jobs:
       with:
         node-version: '18'
 
-    - name: Setup Java (JDK 21)
+    - name: Setup Java (JDK 17)
       uses: actions/setup-java@v5
       with:
         distribution: 'temurin'
-        java-version: '21'
+        java-version: '17'
 
     - name: Instalar Android SDK Manualmente
       run: |
@@ -53,8 +53,8 @@ jobs:
     - name: Gerar projeto Android
       run: |
         export ANDROID_HOME=$HOME/android-sdk
-        printf "n\n%s\n%s\n\n\n\n\n\n" "$JAVA_HOME" "$ANDROID_HOME" | bubblewrap init --manifest=https://AndersonDonizeti.github.io/top-mercado/manifest.json --directory=android --skipPwaValidation
-        ls -la
+        # Responde "y" para o Bubblewrap instalar o seu JDK e passa o Android SDK automaticamente
+        printf "y\n%s\n\n\n\n\n\n" "$ANDROID_HOME" | bubblewrap init --manifest=https://AndersonDonizeti.github.io/top-mercado/manifest.json --directory=android --skipPwaValidation
 
     - name: Build via Gradle
       run: |
