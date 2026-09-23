@@ -29,18 +29,18 @@ jobs:
 
     - name: Instalar Android SDK Manualmente
       run: |
-        echo "Baixando Android Commandline Tools..."
+        echo "A descarregar Android Commandline Tools..."
         mkdir -p $HOME/android-sdk/cmdline-tools
         wget -q https://dl.google.com/android/repository/commandlinetools-linux-11076708_latest.zip -O cmdline-tools.zip
         unzip -q cmdline-tools.zip -d $HOME/android-sdk/cmdline-tools
         mv $HOME/android-sdk/cmdline-tools/cmdline-tools $HOME/android-sdk/cmdline-tools/latest
         
-        echo "Configurando variaveis de ambiente..."
+        echo "A configurar variáveis de ambiente..."
         echo "ANDROID_HOME=$HOME/android-sdk" >> $GITHUB_ENV
         echo "$HOME/android-sdk/cmdline-tools/latest/bin" >> $GITHUB_PATH
         echo "$HOME/android-sdk/platform-tools" >> $GITHUB_PATH
 
-    - name: Aceitar Licencas e Instalar Ferramentas Android
+    - name: Aceitar Licenças e Instalar Ferramentas Android
       run: |
         export ANDROID_HOME=$HOME/android-sdk
         export PATH=$PATH:$ANDROID_HOME/cmdline-tools/latest/bin:$ANDROID_HOME/platform-tools
@@ -54,11 +54,11 @@ jobs:
       run: |
         export ANDROID_HOME=$HOME/android-sdk
         bubblewrap init --manifest=https://AndersonDonizeti.github.io/top-mercado/manifest.json --directory=android --skipPwaValidation || true
-        bubblewrap update --skipPwaValidation || true
 
     - name: Build via Gradle
-      working-directory: android
-      run: ./gradlew assembleRelease
+      run: |
+        export ANDROID_HOME=$HOME/android-sdk
+        cd android && ./gradlew assembleRelease
 
     - name: Salvar o APK (Upload)
       uses: actions/upload-artifact@v4
