@@ -53,7 +53,8 @@ jobs:
     - name: Gerar projeto Android
       run: |
         export ANDROID_HOME=$HOME/android-sdk
-        printf "n\n%s\n%s\n\n\n\n\n\n" "$JAVA_HOME" "$ANDROID_HOME" | bubblewrap init --manifest=https://AndersonDonizeti.github.io/top-mercado/manifest.json --directory=android --skipPwaValidation || true
+        printf "n\n%s\n%s\n\n\n\n\n\n" "$JAVA_HOME" "$ANDROID_HOME" | bubblewrap init --manifest=https://AndersonDonizeti.github.io/top-mercado/manifest.json --directory=android --skipPwaValidation
+        ls -la
 
     - name: Build via Gradle
       run: |
